@@ -5,7 +5,7 @@ public class Jorge {
     private int age;
     private String hobby;
 
-        public Jorge(String saludo) {
+        public Jorge(String saludo, int age, String hobby) {
             this.age = 60;
             this.hobby = "Jugar Futball";
             System.out.println(saludo);
@@ -20,6 +20,7 @@ public class Jorge {
         }
 
     public String getHobby() {
-        return this.hobby;
+        return hobby;
     }
 }
+// Al hacer return se debe imprimir en el main
