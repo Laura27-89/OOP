@@ -7,7 +7,7 @@ public class Persona {
     private int edad;
     private boolean riesgo;
 
-    public Persona(String nombre, String cedula, int edad, Boolean riesgo) {
+    public Persona(String nombre, String cedula, int edad, boolean riesgo) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.edad = edad;
@@ -37,5 +37,4 @@ public class Persona {
     public void setRiesgo(boolean riesgo) {
         this.riesgo = riesgo;
     }
-
 }

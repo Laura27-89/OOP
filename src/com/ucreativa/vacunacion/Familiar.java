@@ -12,4 +12,5 @@ public class Familiar extends Persona {
     public String getParestesco() {
         return parestesco;
     }
+
 }
