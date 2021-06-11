@@ -19,7 +19,7 @@ public class BitacoraService {
                      String facebook, String parentesco, String marca){
 
         int edad = Integer.parseInt(txtEdad);
-        boolean isAmigo = textIsAmigo.equals("S");
+        boolean isAmigo = textIsAmigo.equals("A");
         boolean riesgo = txtRiesgo.equals("S");
         Persona persona;
         if (isAmigo){
