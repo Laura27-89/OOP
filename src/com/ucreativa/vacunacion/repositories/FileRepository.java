@@ -1,38 +1,40 @@
 package com.ucreativa.vacunacion.repositories;
 
-import com.ucreativa.vacunacion.entities.BitacoraVacunas;
 import com.ucreativa.vacunacion.entities.Persona;
 
-import java.io.FileReader;
+import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FileRepository implements Repository {
 
-    private List<BitacoraVacunas> FileReader;
-
-    public FileRepository() {
-    }
-
+    private final String FILE_PATH = "db.txt";
 
     @Override
-    public void save(Persona persona, String marca, Date fecha) {
-        this.FileReader.add(new BitacoraVacunas(persona, marca, fecha));
+    public void save(Persona persona, String marca, Date fecha){
 
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+
+        String texto = persona.getNombre() + " " + marca + " " + format.format(fecha) + "\n";
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true));
+            writer.append(texto);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public List<String> get() {
-        List<String> lines = new ArrayList<>();
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-        for (BitacoraVacunas item : FileReader) {
-            lines.add(item.getPersona().getNombre()
-                    + " - " + item.getMarca()
-                    + " - " + format.format(item.getFecha()));
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH));
+            return reader.lines().collect(Collectors.toList());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-        return lines;
-
+        return null;
     }
 }
